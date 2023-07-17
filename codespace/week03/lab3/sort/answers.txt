@@ -1,0 +1,14 @@
+sort1 uses: bubble sort
+
+How do you know?: slower than third sort at random big data
+
+sort2 uses: merge sort
+
+How do you know?: indenpendent time of the numbers sorted or not
+
+sort3 uses: selection sort
+
+How do you know?: faster than the first sort at random big data
+
+
+

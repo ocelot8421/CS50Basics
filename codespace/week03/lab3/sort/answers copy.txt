@@ -1,0 +1,47 @@
+sort1 uses: TODO
+
+How do you know?: TODO
+
+sort2 uses: TODO
+
+How do you know?: TODO
+
+sort3 uses: TODO
+
+How do you know?: TODO
+
+(real, user, sys)
+                sort1:                              sort2: merge sort
+
+
+random5000:     0m0,108s; 0m0,050s; 0m0,028s        0m0,045s; 0m0,003s; 0m0,020s
+random5000:     0m0,088s; 0m0,055s; 0m0,020s
+
+random10000:    0m0,303s; 0m0,234s; 0m0,042s        0m0,073s; 0m0,015s; 0m0,031s
+random10000:    0m0,367s; 0m0,239s; 0m0,040s
+
+random50000:    0m8,066s; 0m6,987s; 0m0,167s        0m0,970s; 0m0,063s; 0m0,145s
+random50000:    0m8,144s; 0m6,838s; 0m0,168s
+
+
+reversed5000:   0m0,098s; 0m0,052s; 0m0,019s        0m0,064s; 0m0,003s; 0m0,021s
+reversed5000:   0m0,140s; 0m0,068s; 0m0,017s
+
+reversed10000:  0m0,255s; 0m0,190s; 0m0,042s        0m0,069s; 0m0,010s; 0m0,030s
+reversed10000:  0m0,240s; 0m0,195s; 0m0,036s
+
+reversed50000:  0m6,068s; 0m4,971s; 0m0,180s        0m1,224s; 0m0,032s; 0m0,169s
+reversed50000:  0m6,186s; 0m4,967s; 0m0,171s
+
+
+sorted5000:     0m0,042s; 0m0,004s; 0m0,018s
+sorted5000:     0m0,041s; 0m0,006s; 0m0,017s
+
+sorted10000:    0m0,082s; 0m0,008s; 0m0,035s
+sorted10000:    0m0,062s; 0m0,016s; 0m0,024s
+
+sorted50000:    0m0,894s; 0m0,046s; 0m0,128s
+sorted50000:    0m0,795s; 0m0,040s; 0m0,152s
+
+
+

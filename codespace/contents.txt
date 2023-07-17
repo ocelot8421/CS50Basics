@@ -1,0 +1,40 @@
+WEEK0:
+
+
+------------------
+WEEK1:
+hello.c
+
+meow:
+    while loop
+mario:
+    do-while loop (checking user input)
+    for loop
+    double for loop
+    break in while loop
+calculator (2) - (2:14:55):
+    divide with floats, %f, %.2f
+    floating-point imprecision:
+        x: 1 (float)
+        y: 10 (float)
+        x / y = 0.10000000149011611938476562500000000000000000000000 (float)
+    trunction:
+        x: 2 (int)
+        y: 3 (int)
+        0.00000000000000000000000000000000000000000000000000 (float)
+    type conversion (2:18:32):
+Y2K problem (2:20:29):
+    1999 -> 99; 00 -> 1900 or 2000
+    January 1, 2023 - January 1, 1970
+    November 30, 2023 - January 1, 1970 = 2147483647 sec (10)
+    November 30, 2023 - January 1, 1970 = 01111111111111111111111111111111 (2)
+    10000000000000000000000000000000 (2) = -2147483647 = 1901 year
+pennies.c ()
+
+PROBLEM SET 1:
+hello/hello.c
+mario-more/mario
+credit/credit.c
+
+------------------
+
