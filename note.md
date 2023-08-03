@@ -249,7 +249,19 @@ python3 qr.py
 
 Ctrl+Shift+P / Python: Create enviroment
 
----
+[wek06_short]
+#!/usr/bin/env
+chmod a+x <file> -- Linux
+
+[section]
+for _ in words: # _ means that the variable doesn't matter we don't use it, just for loop
+
+## input("Title: ").strip().capitalie()
+
+# print between 0 and 1 random double
+
+import random
+random.random()
 
 ---
 
