@@ -265,6 +265,20 @@ random.random()
 
 ---
 
+[week07_lecture]
+python favorites.py | more
+
+scratch, c, python = 0, 0, 0
+
+- sorted
+  for favorite in sorted(counts):
+  for favorite in sorted(counts, reverse=True):
+
+for favorite in sorted(counts, key=counts[language], reverse=True):
+print(f"{favorite}: {counts{favorite}}")
+
+---
+
 \*
 link1: https://cs50.harvard.edu/x/2023/notes/2/#:~:text=Compiling%20involves%20major%20steps%2C%20including%20the%20following%3A
 
