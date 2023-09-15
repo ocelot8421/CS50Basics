@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = cica
-build_property.ProjectDir = d:\Code\CS50\week1\cica\
+build_property.ProjectDir = d:\Code\CS50Basics\CS50\week1\cica\

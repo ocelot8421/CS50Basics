@@ -2,5 +2,12 @@
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
-  "python.formatting.provider": "none"
+  "python.formatting.provider": "none",
+  "Lua.runtime.version": "LuaJIT",
+  "Lua.runtime.special": {
+    "love.filesystem.load": "loadfile"
+  },
+  "Lua.workspace.library": [
+    "${3rd}/love2d/library"
+  ]
 }

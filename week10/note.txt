@@ -1,0 +1,9 @@
+ lua54 "d:\Code\CS50Basics\week10\main.lua"
+ PATH variable!
+
+ loce2d support extension for vs code and setup -> https://www.youtube.com/watch?v=kpxkQldiNPU
+    check shortcuts! (ALT+L Alt+L)
+OR
+https://sheepolution.com/learn/book/bonus/vscode
+
+ 
