@@ -1,0 +1,15 @@
+D:\Code\CS50\week1\cica\bin\Debug\net7.0\cica.exe
+D:\Code\CS50\week1\cica\bin\Debug\net7.0\cica.deps.json
+D:\Code\CS50\week1\cica\bin\Debug\net7.0\cica.runtimeconfig.json
+D:\Code\CS50\week1\cica\bin\Debug\net7.0\cica.dll
+D:\Code\CS50\week1\cica\bin\Debug\net7.0\cica.pdb
+D:\Code\CS50\week1\cica\obj\Debug\net7.0\cica.csproj.AssemblyReference.cache
+D:\Code\CS50\week1\cica\obj\Debug\net7.0\cica.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\CS50\week1\cica\obj\Debug\net7.0\cica.AssemblyInfoInputs.cache
+D:\Code\CS50\week1\cica\obj\Debug\net7.0\cica.AssemblyInfo.cs
+D:\Code\CS50\week1\cica\obj\Debug\net7.0\cica.csproj.CoreCompileInputs.cache
+D:\Code\CS50\week1\cica\obj\Debug\net7.0\cica.dll
+D:\Code\CS50\week1\cica\obj\Debug\net7.0\refint\cica.dll
+D:\Code\CS50\week1\cica\obj\Debug\net7.0\cica.pdb
+D:\Code\CS50\week1\cica\obj\Debug\net7.0\cica.genruntimeconfig.cache
+D:\Code\CS50\week1\cica\obj\Debug\net7.0\ref\cica.dll
