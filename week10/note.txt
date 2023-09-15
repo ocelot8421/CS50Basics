@@ -7,3 +7,5 @@ OR
 https://sheepolution.com/learn/book/bonus/vscode
 
  
+ BUild:
+ Ctrl + Shift + B <- https://sheepolution.com/learn/book/bonus/vscode#:~:text=launch_type%20%3D%3D%20%22debug%22.-,Building,-Now%20we%20want
