@@ -4,24 +4,27 @@ if arg[2] == "debug" then
 end
 
 
+function love.load()
+    x = 100
+    y = 100
+end
+
+function love.update(dt)
+    if love.keyboard.isDown("right") then
+        x = x + 500 * dt
+    elseif love.keyboard.isDown("left") then
+        x = x - 500 * dt
+    elseif love.keyboard.isDown("down") then
+        y = y + 500 * dt
+    elseif love.keyboard.isDown("up") then
+        y = y - 500 * dt
+    end
+end
+
 
 function love.draw()
-    love.graphics.print("Hello World!", 100, 100)
+    love.graphics.rectangle("line", x, y, 200, 150)
 end
-
-
-example = function ()
-    print("Hello World!")
-end
-
-
-function example2()
-    print("Hello World!")
-end
-
-
-example()
-example2()
 
 
 --errorhandler

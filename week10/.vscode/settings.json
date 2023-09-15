@@ -10,5 +10,9 @@
         "example",
         "example2",
         "lldebugger"
+    ],
+    "Lua.diagnostics.disable": [
+        "undefined-field",
+        "lowercase-global"
     ]
 }
