@@ -32,8 +32,8 @@ end
 function love.keypressed(key)
     if key == "space" then
         createRect(a, b)
-        a = a + c * 1 * aq[q % 8 + 1]
-        b = b + c * 1 * bq[q % 8 + 1]
+        a = a + c * 5 * aq[q % 8 + 1]
+        b = b + c * 5 * bq[q % 8 + 1]
         
         q = q + 1
     end
