@@ -33,3 +33,15 @@ end
 -- same
 rect["width"] = 100
 rect.width = 100
+
+
+-- import example.lua file
+require("example"); require("path.to.example")
+globalTest = 20         global
+local localTest = 20    local
+
+
+-- object's method
+r1.draw(r1)     -->    r1:draw()
+Rectangle = Object.extend(Object)   --> Rectangle = Object:extend()
+

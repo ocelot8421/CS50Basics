@@ -3,75 +3,45 @@ if arg[2] == "debug" then
     require("lldebugger").start()
 end
 
-a = 300
---aq = {0.2929, 1, 0.7071, 1, -0.2929, -1, -0.7071, -1}
-aq = {0.2929, 0.7071, 0.7071, 0.2929, -0.2929, -0.7071, -0.7071, -0.2929}
-b = 300
---bq = {0.7071, 1, -0.2929, -1, -0.7071, -1, 0.2929, 1}
-bq = {1 - 0.2929, 0.2929, -0.2929, -1 + 0.2929, -0.7071, -0.2929, 0.2929, 0.7071}
-c = 1
-d = 0
-e = 1
-q = 0
 
- function love.load()
-    listOfRectangles = {}
-end
+function love.load()
+    -- shapes
+    Object = require "classic"
+    require "rectangle"
+    require "circle"
+    r1 = Rectangle(100, 100, 200, 50)
+    r2 = Circle(350, 80, 25)
 
-function createRect(a, b)
-    rect = {}
-    rect["width"] = 2
-    rect.height = 2
-    rect.x = a
-    rect.y = b
-    rect.speed = 100
-
-    table.insert(listOfRectangles, rect)
-end
-
-function love.keypressed(key)
-    if key == "space" then
-        createRect(a, b)
-        a = a + c * 5 * aq[q % 8 + 1]
-        b = b + c * 5 * bq[q % 8 + 1]
-        
-        q = q + 1
-    end
-    if q % 2 == 0 then
-        e = c
-        c = c + d
-        d = e
-    end
+    -- images
+    myImage = love.graphics.newImage("resources/sheep.png")
+    width = myImage:getWidth()
+    height = myImage:getHeight()
+    print(width .." ".. height)
 end
 
 
 function love.update(dt)
-    if love.keyboard.isDown("d") then
-        for i, rect in ipairs(listOfRectangles) do
-            rect.x = rect.x + rect.speed * dt
-        end
-    elseif love.keyboard.isDown("a") then
-        for i, rect in ipairs(listOfRectangles) do
-            rect.x = rect.x - rect.speed * dt
-        end
-    end
-    
-    if love.keyboard.isDown("s") then
-        for i, rect in ipairs(listOfRectangles) do
-            rect.y = rect.y + rect.speed * dt
-        end
-    elseif love.keyboard.isDown("w") then
-        for i, rect in ipairs(listOfRectangles) do
-            rect.y = rect.y - rect.speed * dt
-        end
-    end  
+    r1:update(dt)
+    r2:update(dt)
 end
 
 
 function love.draw()
-    for i,rect in ipairs(listOfRectangles) do
-        love.graphics.rectangle("line", rect.x, rect.y, rect.width, rect.height)
-    end
+    -- shapes
+    r1:draw()
+    r2:draw()
+
+    -- big baby blue sheep
+    love.graphics.setColor(137/255, 207/255, 240/255)
+    love.graphics.draw(myImage, 100, 100, 0, 0.5, 0.5, -width/2, -height/2)
+    
+    -- little white sheep
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.draw(myImage, 100, 100)
+
+    -- little pink sheep
+    love.graphics.setColor(250/255, 218/255, 221/255)
+    love.graphics.draw(myImage, 100, 100, 0, 0.5, 0.5, -width/2, -height/2)
 end
 
 
