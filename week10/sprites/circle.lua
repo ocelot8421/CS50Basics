@@ -1,3 +1,5 @@
+require "sprites.shape"
+
 Circle = Shape:extend()
 
 function Circle:new(x, y, radius)

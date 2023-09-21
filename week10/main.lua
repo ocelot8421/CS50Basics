@@ -7,16 +7,21 @@ end
 function love.load()
     -- shapes
     Object = require "classic"
-    require "rectangle"
-    require "circle"
-    r1 = Rectangle(100, 100, 200, 50)
-    r2 = Circle(350, 80, 25)
+    require "sprites.circle"
+    require "sprites.rectangle"
+    r1 = Circle(100, 500, 25)
+    r2 = Circle(800, 500, 25)
 
-    -- images
-    myImage = love.graphics.newImage("resources/sheep.png")
-    width = myImage:getWidth()
-    height = myImage:getHeight()
-    print(width .." ".. height)
+    -- girl
+    require "sprites.girl"
+    girl = Girl("resources/girl.png", 400, 100, 1)
+ 
+
+    -- terrier
+    require "sprites.dog"
+    terrier = Dog("resources/dog.png", 400, 400, 0.35)
+
+
 end
 
 
@@ -26,22 +31,26 @@ function love.update(dt)
 end
 
 
+function checkCollision(a, b)
+    local room_x = math.max(a.x, a.x + a.girlWidth, b.x, b.x+b.with) - math.min(a.x, a.x + a.girlWidth, b.x, b.x+b.girlWidth)
+    local room_y = math.max(a.y, a.y + a.girlHeight, b.y, b.y+b.girlHeight) - math.min(a.y, a.y + a.girlHeight, b.y, b.y+b.girlHeight)
+    return  room_x < a.girlWidth + b.girlWidth and  room_y < a.girlHeight + b.girlHeight
+end
+
+
 function love.draw()
     -- shapes
     r1:draw()
     r2:draw()
 
-    -- big baby blue sheep
-    love.graphics.setColor(137/255, 207/255, 240/255)
-    love.graphics.draw(myImage, 100, 100, 0, 0.5, 0.5, -width/2, -height/2)
     
     -- little white sheep
-    love.graphics.setColor(1, 1, 1)
-    love.graphics.draw(myImage, 100, 100)
+    --love.graphics.draw(girlImg, 400, 100, 0, 1, 1, girlWidth/2, girlHeight/2)
 
-    -- little pink sheep
-    love.graphics.setColor(250/255, 218/255, 221/255)
-    love.graphics.draw(myImage, 100, 100, 0, 0.5, 0.5, -width/2, -height/2)
+    girl:draw()
+
+    -- terrierr
+    terrier:draw()
 end
 
 

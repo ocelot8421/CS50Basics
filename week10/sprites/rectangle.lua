@@ -1,4 +1,4 @@
-require "shape"
+require "sprites.shape"
 
 Rectangle = Shape:extend()
 

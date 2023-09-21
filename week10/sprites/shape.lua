@@ -7,5 +7,5 @@ function Shape:new(x, y)
 end
 
 function Shape:update(dt)
-    self.x = self.x + self.speed * dt    
+    self.y = self.y - self.speed * dt  
 end
