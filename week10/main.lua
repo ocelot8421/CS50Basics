@@ -9,18 +9,17 @@ function love.load()
     Object = require "classic"
     require "sprites.circle"
     require "sprites.rectangle"
-    r1 = Circle(100, 500, 25)
-    r2 = Circle(800, 500, 25)
+    math.randomseed(os.clock()*100000000000)
+    r1 = Circle(25, math.random(0, love.graphics.getWidth( )))
+    r2 = Circle(25, math.random(0, love.graphics.getWidth( )))
 
     -- girl
     require "sprites.girl"
     girl = Girl("resources/girl.png", 400, 100, 1)
  
-
     -- terrier
     require "sprites.dog"
     terrier = Dog("resources/dog.png", 400, 400, 0.35)
-
 
 end
 
@@ -28,6 +27,7 @@ end
 function love.update(dt)
     r1:update(dt)
     r2:update(dt)
+    terrier:update(dt)
 end
 
 
@@ -42,10 +42,6 @@ function love.draw()
     -- shapes
     r1:draw()
     r2:draw()
-
-    
-    -- little white sheep
-    --love.graphics.draw(girlImg, 400, 100, 0, 1, 1, girlWidth/2, girlHeight/2)
 
     girl:draw()
 

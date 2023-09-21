@@ -2,7 +2,6 @@ Sprite = Object:extend()
 
 function Sprite:new(path, x, y, scale)
     self.img = love.graphics.newImage(path)
-    print(path)
     self.x = x
     self.y = y
     self.angle = 0

@@ -2,9 +2,19 @@ require "sprites.shape"
 
 Circle = Shape:extend()
 
-function Circle:new(x, y, radius)
-    Circle.super.new(self, x, y)
+function Circle:new(radius, x)
+    Circle.super.new(self, x)
     self.radius = radius
+end
+
+function Circle:update(dt)
+    if self.y + self.radius < 0 then
+        self.y = love.graphics.getHeight( )
+        math.randomseed(os.clock()*100000000000)
+        self.x = math.random(0, love.graphics.getWidth( ))
+    else
+        Circle.super.update(self, dt)
+    end
 end
 
 function Circle:draw()
