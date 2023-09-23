@@ -13,16 +13,22 @@ function love.load()
     r1 = Circle(25, math.random(0, love.graphics.getWidth( )))
     r2 = Circle(25, math.random(0, love.graphics.getWidth( )))
 
+    leashLength = 300
+
     -- girl
     require "sprites.girl"
     originX = 400
     originY = 100
-    girl = Girl("resources/girl.png", originX, originY, 1)
+    girl = Girl("resources/girl.png", originX, originY, 100, 1)
  
     -- terrier
     require "sprites.dog"
-    leashLength = 300
     terrier = Dog("resources/dog.png", originX, originY, leashLength, 0.35)
+
+    --leash
+    require "sprites.leash"
+    leash = Leash(originX, originY, originX, originY + leashLength)
+
 end
 
 
@@ -30,6 +36,8 @@ function love.update(dt)
     r1:update(dt)
     r2:update(dt)
     terrier:update(dt, originX, originY)
+    girl:update(dt, terrier.x, terrier.y)
+    leash:update(terrier.x, terrier.y)
 end
 
 
@@ -45,10 +53,10 @@ function love.draw()
     r1:draw()
     r2:draw()
 
-    girl:draw()
-
-    -- terrierr
+    -- sprites
     terrier:draw()
+    girl:draw(76, 48)
+    leash:draw()
 end
 
 

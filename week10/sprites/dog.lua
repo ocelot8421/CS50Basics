@@ -12,22 +12,20 @@ function Dog:new(path, x, y, leashLength, scale)
 end
 
 function Dog:update(dt, girlX, girlY)
-    if love.keyboard.isDown("left") then
-        self.x = self.x - self.speed * math.cos(self.posAngle) * dt
-        self.y = self.y - self.speed * math.sin(self.posAngle) * dt
+    self.posAngle = math.atan2(self.x - girlX, self.y - girlY)
+    if love.keyboard.isDown("left") and self.posAngle / math.pi * 180 > -90 then
+        self.x = self.x - self.leashLength * math.cos(self.posAngle) * dt
+        self.y = self.y + self.leashLength * math.sin(self.posAngle) * dt
         self.posAngle = self.posAngle + math.rad(1)
-    elseif love.keyboard.isDown("right") then
-        self.x = self.x + self.speed * math.cos(self.posAngle) * dt
-        self.y = self.y - self.speed * math.sin(self.posAngle) * dt
+    elseif love.keyboard.isDown("right") and self.posAngle / math.pi * 180 < 90 then
+        self.x = self.x + self.leashLength * math.cos(self.posAngle) * dt
+        self.y = self.y - self.leashLength * math.sin(self.posAngle) * dt
         self.posAngle = self.posAngle - math.rad(1)
-        --self.y = self.y + math.sqrt(math.pow(self.leashLength, 2) + math.pow(self.x, 2))
     end
-
-    print(self.x .." ".. self.y .." ".. self.posAngle)
-
+ 
     --if love.keyboard.isDown("down") then
     --    self.y = self.y + self.speedVertical * dt
-    --else love.keyboard.isDown("space")
+    --else
     --    self.y = self.y - self.speedVertical * dt
     --end
 end
