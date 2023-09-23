@@ -13,14 +13,13 @@ end
 
 function Dog:update(dt, girlX, girlY)
     if love.keyboard.isDown("left") then
-        --self.x = self.x - self.speed * dt
         self.x = self.x - self.speed * math.cos(self.posAngle) * dt
-        self.posAngle = self.posAngle + dt
-        --self.y = self.y + math.sqrt(math.pow(self.leashLength, 2) + math.pow(self.x, 2))
+        self.y = self.y - self.speed * math.sin(self.posAngle) * dt
+        self.posAngle = self.posAngle + math.rad(1)
     elseif love.keyboard.isDown("right") then
-        --self.x = self.x + self.speed * dt
         self.x = self.x + self.speed * math.cos(self.posAngle) * dt
-        self.posAngle = self.posAngle - dt
+        self.y = self.y - self.speed * math.sin(self.posAngle) * dt
+        self.posAngle = self.posAngle - math.rad(1)
         --self.y = self.y + math.sqrt(math.pow(self.leashLength, 2) + math.pow(self.x, 2))
     end
 
