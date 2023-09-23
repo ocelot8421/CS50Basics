@@ -15,19 +15,21 @@ function love.load()
 
     -- girl
     require "sprites.girl"
-    girl = Girl("resources/girl.png", 400, 100, 1)
+    originX = 400
+    originY = 100
+    girl = Girl("resources/girl.png", originX, originY, 1)
  
     -- terrier
     require "sprites.dog"
-    terrier = Dog("resources/dog.png", 400, 400, 0.35)
-
+    leashLength = 300
+    terrier = Dog("resources/dog.png", originX, originY, leashLength, 0.35)
 end
 
 
 function love.update(dt)
     r1:update(dt)
     r2:update(dt)
-    terrier:update(dt)
+    terrier:update(dt, originX, originY)
 end
 
 
