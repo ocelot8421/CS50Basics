@@ -8,9 +8,11 @@ function Leash:new(girlX, girlY, dogX, dogY)
     self.length = 300
 end
 
-function Leash:update(x, y)
-    self.dogX = x
-    self.dogY = y
+function Leash:update(dogX, dogY, girlX, girlY)
+    self.dogX = dogX
+    self.dogY = dogY
+    self.girlX = girlX
+    self.girlY = girlY
     self.length = math.sqrt(math.pow(self.dogX - self.girlX, 2) + math.pow(self.dogY - self.girlY, 2))
 end
 

@@ -7,13 +7,13 @@ function Circle:new(radius, x)
     self.radius = radius
 end
 
-function Circle:update(dt)
+function Circle:update(dt, leashLength, dogX, dogY, girlX, girlY)
     if self.y + self.radius < 0 then
-        self.y = love.graphics.getHeight( )
+        self.y = love.graphics.getHeight()
         math.randomseed(os.clock()*100000000000)
-        self.x = math.random(0, love.graphics.getWidth( ))
+        self.x = math.random(0, love.graphics.getWidth())
     else
-        Circle.super.update(self, dt)
+        Circle.super.update(self, dt, leashLength, dogX, dogY, girlX, girlY)
     end
 end
 

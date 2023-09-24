@@ -6,6 +6,7 @@ function Shape:new(x)
     self.speed = 100
 end
 
-function Shape:update(dt)
-    self.y = self.y - self.speed * dt
+function Shape:update(dt, leashLength, dogX, dogY, girlX, girlY)
+    --print(posAngleDeg)
+    self.y = self.y - (dogY - girlY) / leashLength * dt * self.speed
 end

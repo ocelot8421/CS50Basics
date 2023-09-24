@@ -7,13 +7,15 @@ end
 function love.load()
     -- shapes
     Object = require "classic"
+    require "sprites.shape"
     require "sprites.circle"
     require "sprites.rectangle"
     math.randomseed(os.clock()*100000000000)
     r1 = Circle(25, math.random(0, love.graphics.getWidth( )))
     r2 = Circle(25, math.random(0, love.graphics.getWidth( )))
 
-    leashLength = 300
+    leashLengthMax = 300
+    leashLength = leashLengthMax
 
     -- girl
     require "sprites.girl"
@@ -33,11 +35,14 @@ end
 
 
 function love.update(dt)
-    r1:update(dt)
-    r2:update(dt)
-    terrier:update(dt, originX, originY)
+    posAngleRad = math.atan2(terrier.x - girl.x, terrier.y - girl.y)
+    posAngleDeg = posAngleRad / math.pi * 180
+    leashLength = math.sqrt(math.pow(terrier.x - girl.x, 2) + math.pow(terrier.y - girl.y, 2))
+    r1:update(dt, leashLength, terrier.x, terrier.y, girl.x, girl.y)
+    r2:update(dt, leashLength, terrier.x, terrier.y, girl.x, girl.y)
+    terrier:update(dt, girl.x, girl.y)
     girl:update(dt, terrier.x, terrier.y)
-    leash:update(terrier.x, terrier.y)
+    leash:update(terrier.x, terrier.y, girl.x, girl.y)
 end
 
 

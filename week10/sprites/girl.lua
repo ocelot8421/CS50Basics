@@ -5,22 +5,19 @@ Girl = Sprite:extend()
 function Girl:new(path, x, y, speed, scale)
     Girl.super.new(self, path, x, y, scale)
     self.speed = speed
-    
+    self.amplitudo = 100
+    self.time = 0
+    self.posAngle = 0
 end
 
 function Girl:update(dt, dogX, dogY)
-    self.posAngle = math.atan2(dogX - self.x, dogY - self.y)
-    if self.posAngle / math.pi * 180 > 0.5 then
-        print(self.posAngle / math.pi * 180)
-        self.x = self.x + self.speed * math.cos(self.posAngle) * dt
-        --self.y = self.y - self.speed * math.sin(self.posAngle)
-        self.posAngle = self.posAngle + math.rad(1)
-    elseif self.posAngle / math.pi * 180 < -0.5 then
-        print(self.posAngle / math.pi * 180)
-        self.x = self.x - self.speed * math.cos(self.posAngle) * dt
-        --self.y = self.y - self.speed * math.sin(self.posAngle)
-        self.posAngle = self.posAngle - math.rad(1)
+    if self.posAngle < 3000 then
+        self.x = self.x - self.amplitudo * math.pow(2.7182818284, -0.1 * dt * self.posAngle) * math.cos(math.rad(self.posAngle)) * dt
+        self.posAngle = self.posAngle + 1
+        print(self.posAngle)
+        print(math.pow(2.7182818284, -0.3 * dt * self.posAngle))
     end
+    
 end
 
 function Girl:draw(x, y)
