@@ -21,7 +21,7 @@ function love.load()
     require "sprites.girl"
     originX = 400
     originY = 100
-    girl = Girl("resources/girl.png", originX, originY, 100, 1, leashLength)
+    girl = Girl("resources/girl.png", originX, originY, 1, leashLength)
  
     -- terrier
     require "sprites.dog"
