@@ -56,8 +56,8 @@ function Girl:update(dt, dogX, dogY)
     self.x = self.x + deltaX + speedGirl * dt
 
     -- draws the path where was the sprite before
-    table.remove(self.track, 100)
-    for i=100,2,-1 do
+    table.remove(self.track, self.trackLength)
+    for i=self.trackLength,2,-1 do
         self.track[i] = self.track[i - 1]
     end
     self.track[1] = self.x
@@ -70,9 +70,11 @@ function Girl:draw(x, y)
     self.offsetX = x
     self.offsetY = y
     Girl.super.draw(self)
-    for i=1,100,1 do
+    for i=1,self.trackLength,1 do
         if self.track[i] ~= nil and self.track[i + 1] then
-            love.graphics.line(self.track[i], self.y - i, self.track[i + 1], self.y - i - 1)
+            --love.graphics.line((self.track[i] - self.offsetX), (self.y - i + 1 - self.offsetY), (self.track[i + 1] - self.offsetX), (self.y - i - self.offsetY))
+            love.graphics.line((self.track[i] - self.offsetX), (self.y - i + 1 - (self.offsetY - self.height)), (self.track[i + 1] - self.offsetX), (self.y - i - (self.offsetY - self.height)))
+            love.graphics.line((self.track[i] + (self.width - self.offsetX)), (self.y - i + 1 - (self.offsetY - self.height)), (self.track[i + 1] + (self.width - self.offsetX)), (self.y - i - (self.offsetY - self.height)))
         end
     end
 end

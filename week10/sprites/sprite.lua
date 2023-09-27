@@ -11,7 +11,8 @@ function Sprite:new(path, x, y, scale)
     self.offsetX = self.img:getWidth() / 2
     self.offsetY = self.img:getHeight() / 2
     self.track = {}
-    for i=100,1,-2 do
+    self.trackLength = 500
+    for i=self.trackLength,1,-2 do
         table.insert(self.track, nil)
     end
 end

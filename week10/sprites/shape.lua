@@ -8,5 +8,6 @@ end
 
 function Shape:update(dt, leashLength, dogX, dogY, girlX, girlY)
     --print(posAngleDeg)
-    self.y = self.y - (dogY - girlY) / leashLength * dt * self.speed
+    --self.y = self.y - (dogY - girlY) / leashLength * dt * self.speed
+    self.y = self.y - dt * self.speed
 end

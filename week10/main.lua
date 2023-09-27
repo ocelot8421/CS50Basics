@@ -46,11 +46,10 @@ function love.update(dt)
     girl:update(dt, terrier.x, terrier.y)
     for i=1,numOfTrees do
         listOfTrees[i]:update(dt, leashLength, terrier.x, terrier.y, girl.x, girl.y)
-        if checkCollision(terrier, listOfTrees[i]) or checkCollision( girl, listOfTrees[i]) then
+        if checkCollision(terrier, listOfTrees[i]) and checkCollision( girl, listOfTrees[i]) then
             love.graphics.setBackgroundColor(255/255, 200/255, 40/255, 127/255)
         else
             love.graphics.setBackgroundColor(0,0,0,0)
-               
         end
     end
     leash:update(terrier.x, terrier.y, girl.x, girl.y)
