@@ -1,0 +1,47 @@
+ lua54 "d:\Code\CS50Basics\week10\main.lua"
+ PATH variable!
+
+ loce2d support extension for vs code and setup -> https://www.youtube.com/watch?v=kpxkQldiNPU
+    check shortcuts! (ALT+L Alt+L)
+OR
+https://sheepolution.com/learn/book/bonus/vscode
+
+ 
+ BUild:
+ Ctrl + Shift + B <- https://sheepolution.com/learn/book/bonus/vscode#:~:text=launch_type%20%3D%3D%20%22debug%22.-,Building,-Now%20we%20want
+
+4 ~= 5 (same as 4!=5 in java)
+
+#fruits length of the table named "fruits"
+for i = 1, #fruits do
+        love.graphics.print(fruits[i], 200, 100 + 50 * i)
+end
+
+
+
+-- ipairs, write to debug console
+function love.load()
+    fruits = {"apple", "banana"}
+    table.insert(fruits, "pear")
+
+    for i,v in ipairs(fruits) do
+        print(i, v)
+    end
+end
+
+
+-- same
+rect["width"] = 100
+rect.width = 100
+
+
+-- import example.lua file
+require("example"); require("path.to.example")
+globalTest = 20         global
+local localTest = 20    local
+
+
+-- object's method
+r1.draw(r1)     -->    r1:draw()
+Rectangle = Object.extend(Object)   --> Rectangle = Object:extend()
+
