@@ -62,8 +62,8 @@ function Girl:draw(x, y)
     self.offsetY = y
     
     -- draws the track-path behind the girl
-    love.graphics.setColor(250/255, 218/255, 221/255, 0.2)
-    Girl.super.drawTrackLine(self)
+    --love.graphics.setColor(250/255, 218/255, 221/255, 0.2)
+    --Girl.super.drawTrackLine(self)
     
     -- draws the picture
     love.graphics.setColor(1,1,1)

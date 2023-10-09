@@ -36,9 +36,6 @@ function Dog:update(dt, girlX, girlY)
 end
 
 function Dog:draw()
-    -- draws the track-path behind the girl
-    love.graphics.setColor(140/255, 255/255, 220/255, 0.2)
-    Dog.super.drawTrackLine(self)
     
     -- draws the picture
     love.graphics.setColor(1,1,1)

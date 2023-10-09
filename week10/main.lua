@@ -12,7 +12,7 @@ function love.load()
     require "sprites.rectangle"
     math.randomseed(os.clock()*100000000000)
     listOfTrees = {}
-    numOfTrees = 3
+    numOfTrees = 1
     for i=1,numOfTrees do
         tree = Circle(math.random(5, 40), math.random(0, love.graphics.getWidth( )))
         table.insert(listOfTrees, tree)
@@ -25,11 +25,12 @@ function love.load()
     require "sprites.girl"
     originX = 400
     originY = 100
-    girl = Girl("resources/girl.png", originX, originY, 1, leashLength)
+    girl = Girl("resources/girl.png", originX, originY, 1, leashLength, 1)
  
     -- terrier
     require "sprites.dog"
     terrier = Dog("resources/dog.png", originX, originY, leashLength, 0.35)
+    --terrier = Dog("resources/dog.png", originX, originY, leashLength, 1)
 
     --leash
     require "sprites.leash"
@@ -45,27 +46,11 @@ function love.update(dt)
     terrier:update(dt, girl.x, girl.y)
     girl:update(dt, terrier.x, terrier.y)
     for i=1,numOfTrees do
-        listOfTrees[i]:update(dt, leashLength, terrier.x, terrier.y, girl.x, girl.y)
-        if checkCollision(terrier, listOfTrees[i]) or checkCollision( girl, listOfTrees[i]) then
-            love.graphics.setBackgroundColor(255/255, 200/255, 40/255, 127/255)
-        else
-            love.graphics.setBackgroundColor(0,0,0,0)
-        end
+        listOfTrees[i]:update(dt, girl, terrier)
     end
     leash:update(terrier.x, terrier.y, girl.x, girl.y)
 end
 
-
-function checkCollision(a, tree)
-    flag = false
-    local room_x = math.max(a.x, a.x + a.width, tree.x, tree.x+tree.width) - math.min(a.x, a.x + a.width, tree.x, tree.x+tree.width)
-    local room_y = math.max(a.y, a.y + a.height, tree.y, tree.y+tree.height) - math.min(a.y, a.y + a.height, tree.y, tree.y+tree.height)
-    if  room_x < a.width + tree.width and  room_y < a.height + tree.height then
-        flag = true
-    end
-    print(flag)
-    return flag
-end
 
 
 function love.draw()
@@ -78,9 +63,15 @@ function love.draw()
     terrier:draw()
     girl:draw(76, 48)
     leash:draw()
+
+    --for i = 1, 6, 1 do
+    --    love.graphics.line(0, i * 100, 800, i * 100)  
+    --end
+    --love.graphics.line(terrier.x - terrier.offsetX * terrier.scale, 0, terrier.x - terrier.offsetX * terrier.scale, 600)    
+    --love.graphics.line(terrier.x + terrier.offsetX * terrier.scale, 0, terrier.x + terrier.offsetX * terrier.scale, 600)    
+    --love.graphics.line(0, terrier.y - terrier.offsetY * terrier.scale, 800, terrier.y - terrier.offsetY * terrier.scale)    
+    --love.graphics.line(0, terrier.y + (terrier.height - terrier.offsetY) * terrier.scale, 800, terrier.y + (terrier.height - terrier.offsetY) * terrier.scale)    
 end
-
-
 
 
 --errorhandler
