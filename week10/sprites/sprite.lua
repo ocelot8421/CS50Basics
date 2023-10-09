@@ -10,9 +10,11 @@ function Sprite:new(path, x, y, scale)
     self.height = self.img:getHeight()
     self.offsetX = self.img:getWidth() / 2
     self.offsetY = self.img:getHeight() / 2
+
+    -- path behind the girl
     self.track = {}
     self.trackLength = 500
-    for i=self.trackLength,1,-2 do
+    for i=self.trackLength,1,-1 do
         table.insert(self.track, nil)
     end
 end
