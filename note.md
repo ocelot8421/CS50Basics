@@ -274,8 +274,14 @@ scratch, c, python = 0, 0, 0
   for favorite in sorted(counts):
   for favorite in sorted(counts, reverse=True):
 
-for favorite in sorted(counts, key=counts[language], reverse=True):
+for favorite in sorted(counts, key=lambda language: counts[language], reverse=True):
 print(f"{favorite}: {counts{favorite}}")
+
+CRUD
+create - create, insert
+read - select
+update - update
+delete - delete, drop
 
 ---
 
