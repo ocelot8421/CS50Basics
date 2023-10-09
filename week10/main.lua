@@ -12,7 +12,7 @@ function love.load()
     require "sprites.rectangle"
     math.randomseed(os.clock()*100000000000)
     listOfTrees = {}
-    numOfTrees = 1
+    numOfTrees = 3
     for i=1,numOfTrees do
         tree = Circle(math.random(5, 40), math.random(0, love.graphics.getWidth( )))
         table.insert(listOfTrees, tree)
@@ -46,7 +46,7 @@ function love.update(dt)
     girl:update(dt, terrier.x, terrier.y)
     for i=1,numOfTrees do
         listOfTrees[i]:update(dt, leashLength, terrier.x, terrier.y, girl.x, girl.y)
-        if checkCollision(terrier, listOfTrees[i]) and checkCollision( girl, listOfTrees[i]) then
+        if checkCollision(terrier, listOfTrees[i]) or checkCollision( girl, listOfTrees[i]) then
             love.graphics.setBackgroundColor(255/255, 200/255, 40/255, 127/255)
         else
             love.graphics.setBackgroundColor(0,0,0,0)
@@ -56,11 +56,11 @@ function love.update(dt)
 end
 
 
-function checkCollision(a, b)
+function checkCollision(a, tree)
     flag = false
-    local room_x = math.max(a.x, a.x + a.width, b.x, b.x+b.width) - math.min(a.x, a.x + a.width, b.x, b.x+b.width)
-    local room_y = math.max(a.y, a.y + a.height, b.y, b.y+b.height) - math.min(a.y, a.y + a.height, b.y, b.y+b.height)
-    if  room_x < a.width + b.width and  room_y < a.height + b.height then
+    local room_x = math.max(a.x, a.x + a.width, tree.x, tree.x+tree.width) - math.min(a.x, a.x + a.width, tree.x, tree.x+tree.width)
+    local room_y = math.max(a.y, a.y + a.height, tree.y, tree.y+tree.height) - math.min(a.y, a.y + a.height, tree.y, tree.y+tree.height)
+    if  room_x < a.width + tree.width and  room_y < a.height + tree.height then
         flag = true
     end
     print(flag)
