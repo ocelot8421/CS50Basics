@@ -44,10 +44,10 @@ function love.update(dt)
     leashLength = math.sqrt(math.pow(terrier.x - girl.x, 2) + math.pow(terrier.y - girl.y, 2))
     terrier:update(dt, girl.x, girl.y)
     girl:update(dt, terrier.x, terrier.y)
-    for i=1,numOfTrees do
-        listOfTrees[i]:update(dt, girl, terrier)
-    end
     leash:update(terrier.x, terrier.y, girl.x, girl.y)
+    for i=1,numOfTrees do
+        listOfTrees[i]:update(dt, girl, terrier, leash)
+    end
 end
 
 
