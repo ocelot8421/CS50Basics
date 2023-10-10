@@ -12,9 +12,9 @@ function love.load()
     require "sprites.rectangle"
     math.randomseed(os.clock()*100000000000)
     listOfTrees = {}
-    numOfTrees = 1
+    numOfTrees = 6
     for i=1,numOfTrees do
-        tree = Circle(math.random(5, 40), math.random(0, love.graphics.getWidth( )))
+        local tree = Circle(math.random(5, 40), math.random(0, love.graphics.getWidth( )))
         table.insert(listOfTrees, tree)
     end
 
@@ -63,14 +63,6 @@ function love.draw()
     terrier:draw()
     girl:draw(76, 48)
     leash:draw()
-
-    --for i = 1, 6, 1 do
-    --    love.graphics.line(0, i * 100, 800, i * 100)  
-    --end
-    --love.graphics.line(terrier.x - terrier.offsetX * terrier.scale, 0, terrier.x - terrier.offsetX * terrier.scale, 600)    
-    --love.graphics.line(terrier.x + terrier.offsetX * terrier.scale, 0, terrier.x + terrier.offsetX * terrier.scale, 600)    
-    --love.graphics.line(0, terrier.y - terrier.offsetY * terrier.scale, 800, terrier.y - terrier.offsetY * terrier.scale)    
-    --love.graphics.line(0, terrier.y + (terrier.height - terrier.offsetY) * terrier.scale, 800, terrier.y + (terrier.height - terrier.offsetY) * terrier.scale)    
 end
 
 
