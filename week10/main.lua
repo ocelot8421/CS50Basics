@@ -30,7 +30,6 @@ function love.load()
     -- terrier
     require "sprites.dog"
     terrier = Dog("resources/dog.png", originX, originY, leashLength, 0.35)
-    --terrier = Dog("resources/dog.png", originX, originY, leashLength, 1)
 
     --leash
     require "sprites.leash"
@@ -50,7 +49,6 @@ function love.update(dt)
     end
     leash:update(terrier.x, terrier.y, girl.x, girl.y)
 end
-
 
 
 function love.draw()

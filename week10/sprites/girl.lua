@@ -56,7 +56,6 @@ function Girl:update(dt, dogX, dogY)
 end
 
 
-
 function Girl:draw(x, y)
     self.offsetX = x
     self.offsetY = y
@@ -68,5 +67,7 @@ function Girl:draw(x, y)
     -- draws the picture
     love.graphics.setColor(1,1,1)
     Girl.super.draw(self)
+
+    love.graphics.print("Girl: " ..self.painPoint, 20, 10)
 end
 

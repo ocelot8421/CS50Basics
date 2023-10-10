@@ -24,13 +24,6 @@ function Dog:update(dt, girlX, girlY)
         --self.y = self.y - self.leashLength * math.sin(self.posAngle) * dt
         self.posAngle = self.posAngle - math.rad(1)
     end
- 
-    -- TODO(2/5): the dog can run forward or stop  
-    --if love.keyboard.isDown("down") then
-    --    self.y = math.min(self.y + self.speedVertical * dt, self.leashLengthMax)
-    --else
-    --    self.y = self.y - self.speedVertical * dt
-    --end
 
     Dog.super.update(self, dt)
 end
@@ -40,4 +33,5 @@ function Dog:draw()
     -- draws the picture
     love.graphics.setColor(1,1,1)
     Dog.super.draw(self)
+    love.graphics.print("Terrier: " ..self.painPoint, 20, 30)
 end

@@ -11,10 +11,8 @@ function Sprite:new(path, x, y, scale)
     self.offsetX = self.img:getWidth() / 2
     self.offsetY = self.img:getHeight() / 2
     self.speed = 100
-
-    self.vertexLeft = {self.x, self.y}
-    self.vertexRight = {self.x, self.y}
     self.demaged = false
+    self.painPoint = 0
 
     -- path behind the girl
     self.track = {}
@@ -34,11 +32,6 @@ function Sprite:update(dt)
     end
     self.track[1] = self.x
     self.track[2] = self.y
-
-    self.vertexLeft[1] = self.x - self.offsetX * self.scale
-    self.vertexLeft[2] = self.y + (self.offsetY - self.height) * self.scale
-    self.vertexRight[1] = self.x + self.offsetX * self.scale
-    self.vertexRight[2] = self.vertexLeft[2]
 end
 
 function Sprite:draw()
@@ -51,10 +44,6 @@ function Sprite:drawTrackLine()
             distanceBottom = (self.offsetY - self.height) * self.scale
             distanceLeft = self.offsetX * self.scale
             distanceRight = (self.width - self.offsetX) * self.scale
-            --self.vertexLeft[1] = self.track[i] - distanceLeft
-            --self.vertexLeft[2] = self.track[i + 1] - distanceBottom
-            --self.vertexRight[1] = self.track[i] + distanceLeft
-            --self.vertexRight[2] = self.track[i + 1] - distanceBottom
             love.graphics.line(
                 (self.track[i] - distanceLeft), (self.track[i + 1] - distanceBottom),
                 (self.track[i + 2] - distanceLeft), (self.track[i + 3] - distanceBottom)

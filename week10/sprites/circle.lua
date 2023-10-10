@@ -28,11 +28,8 @@ function Circle:draw()
     else
         love.graphics.setColor(1, 1, 1, 0.5)
     end
-    --love.graphics.setColor(1, 1, 1, 0.5)
     love.graphics.circle("line", self.x, self.y, self.radius)
-    --love.graphics.setColor(1, 1, 1, 0.5)
     love.graphics.draw(self.img, self.x, self.y, self.angle, 0.7, 0.7, 245, 185)
-    --love.graphics.setColor(1, 1, 1, 1)
 end
 
 function Circle:collise(sprite)
@@ -61,12 +58,8 @@ function Circle:collise(sprite)
     local distY = maxY - minY
     local lengthY = sprite.height * sprite.scale + self.height
 
-    --print(distX .."  ".. lengthX .." - ".. distY .."  ".. lengthY)
-    --print(sprite.x - sprite.offsetX * sprite.scale .."  "..  sprite.x + sprite.offsetX * sprite.scale .."  "..  self.x - self.radius.."  "..  self.x + self.radius)
-    --print(sprite.y - sprite.offsetY * sprite.scale .."  ".. sprite.y + (sprite.height - sprite.offsetY) * sprite.scale .."  ".. self.y - self.radius .."  ".. self.y + self.radius)
-
     if distX < lengthX and distY < lengthY then
-        print("au")
+        sprite.painPoint = sprite.painPoint + 1
         crashed = true
     end
 
