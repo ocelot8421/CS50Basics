@@ -4,7 +4,6 @@ Girl = Sprite:extend()
 
 function Girl:new(path, x, y, scale, leashLength)
     Girl.super.new(self, path, x, y, scale)
-    leash = leashLength
     self.time = 0
     posAngle = 0
     speedGirl = 0

@@ -4,7 +4,6 @@ function Shape:new(x)
     self.x = x
     self.y = math.random(30, 400)
     self.speed = 100
-    --self.speed = 20
 end
 
 function Shape:update(dt)

@@ -1,4 +1,5 @@
 require "sprites.shape"
+require "sprites.leash"
 
 Circle = Shape:extend()
 
@@ -10,7 +11,7 @@ function Circle:new(radius, x)
     self.height = 2 * self.radius
 end
 
-function Circle:update(dt, girl, terrier)
+function Circle:update(dt, girl, terrier, leash)
     if self.y + self.radius < 0 then
         self.y = love.graphics.getHeight()
         math.randomseed(os.clock()*100000000000)
@@ -30,7 +31,28 @@ function Circle:draw()
     end
     love.graphics.circle("line", self.x, self.y, self.radius)
     love.graphics.draw(self.img, self.x, self.y, self.angle, 0.7, 0.7, 245, 185)
+
+    -- crash point
+    local minPx = math.min(terrier.x, girl.x)
+    local maxPx = math.max(terrier.x, girl.x)
+    if minPx < self.x and self.x < maxPx and girl.y < self.y and self.y < terrier.y then
+        local dx = girl.x - terrier.x
+        local dy = girl.y - terrier.y
+        local sx = math.sin(math.atan2(dy, dx)) * self.radius
+        local sy = math.cos(math.atan2(dy, dx)) * self.radius
+
+        local tanTreeRightPoint = (self.y - sy - girl.y) / (self.x + sx - girl.x)
+        local tanTreeLeftPoint = (self.y + sy - girl.y) / (self.x - sx - girl.x)
+        
+        if math.abs(dy / dx) < math.abs(tanTreeLeftPoint) or math.abs(dy / dx) < math.abs(tanTreeRightPoint) then
+            print("noooo")
+            leash.demaged = true
+        end
+        
+        love.graphics.line(self.x - sx, self.y + sy, self.x + sx, self.y - sy)
+    end
 end
+
 
 function Circle:collise(sprite)
     local crashed = false

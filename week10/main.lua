@@ -12,7 +12,7 @@ function love.load()
     require "sprites.rectangle"
     math.randomseed(os.clock()*100000000000)
     listOfTrees = {}
-    numOfTrees = 6
+    numOfTrees = 1
     for i=1,numOfTrees do
         local tree = Circle(math.random(5, 40), math.random(0, love.graphics.getWidth( )))
         table.insert(listOfTrees, tree)
@@ -39,9 +39,6 @@ end
 
 
 function love.update(dt)
-    posAngleRad = math.atan2(terrier.x - girl.x, terrier.y - girl.y)
-    posAngleDeg = posAngleRad / math.pi * 180
-    leashLength = math.sqrt(math.pow(terrier.x - girl.x, 2) + math.pow(terrier.y - girl.y, 2))
     terrier:update(dt, girl.x, girl.y)
     girl:update(dt, terrier.x, terrier.y)
     leash:update(terrier.x, terrier.y, girl.x, girl.y)
