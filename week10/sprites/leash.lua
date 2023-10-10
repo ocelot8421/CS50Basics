@@ -7,6 +7,7 @@ function Leash:new(girlX, girlY, dogX, dogY)
     self.dogY = dogY
     self.length = 300
     self.demaged = false
+    self.tree = Circle
 end
 
 function Leash:update(dogX, dogY, girlX, girlY)
@@ -18,11 +19,11 @@ function Leash:update(dogX, dogY, girlX, girlY)
 end
 
 function Leash:draw()
-    if self.length > 280 and self.demaged == false then
+    if self.length > 280 then
         love.graphics.setColor(50/255, 50/255, 205/255)
         love.graphics.line(self.girlX, self.girlY, self.dogX, self.dogY)
         love.graphics.setColor(1, 1, 1)
-    elseif self.length > 280 and self.demaged == true then
+    else
         love.graphics.setColor(1, 0, 0)
         love.graphics.line(self.girlX, self.girlY, self.dogX, self.dogY)
         love.graphics.setColor(1, 1, 1)

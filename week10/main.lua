@@ -12,7 +12,7 @@ function love.load()
     require "sprites.rectangle"
     math.randomseed(os.clock()*100000000000)
     listOfTrees = {}
-    numOfTrees = 1
+    numOfTrees = 3
     for i=1,numOfTrees do
         local tree = Circle(math.random(5, 40), math.random(0, love.graphics.getWidth( )))
         table.insert(listOfTrees, tree)

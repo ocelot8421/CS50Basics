@@ -9,6 +9,7 @@ function Circle:new(radius, x)
     self.radius = radius
     self.width = 2 * self.radius
     self.height = 2 * self.radius
+    self.leashPoint = {{},{}}
 end
 
 function Circle:update(dt, girl, terrier, leash)
@@ -16,7 +17,6 @@ function Circle:update(dt, girl, terrier, leash)
         self.y = love.graphics.getHeight()
         math.randomseed(os.clock()*100000000000)
         self.x = math.random(0, love.graphics.getWidth())
-        --self.x = 400
     else
         Circle.super.update(self, dt)
     end
@@ -35,7 +35,7 @@ function Circle:draw()
     -- crash point
     local minPx = math.min(terrier.x, girl.x)
     local maxPx = math.max(terrier.x, girl.x)
-    if minPx < self.x and self.x < maxPx and girl.y < self.y and self.y < terrier.y then
+    --if minPx < self.x and self.x < maxPx and girl.y < self.y and self.y < terrier.y then
         local dx = girl.x - terrier.x
         local dy = girl.y - terrier.y
         local sx = math.sin(math.atan2(dy, dx)) * self.radius
@@ -44,13 +44,17 @@ function Circle:draw()
         local tanTreeRightPoint = (self.y - sy - girl.y) / (self.x + sx - girl.x)
         local tanTreeLeftPoint = (self.y + sy - girl.y) / (self.x - sx - girl.x)
         
+        love.graphics.line((self.x + sy), (self.y + sx), (self.x - sy), (self.y - sx)) -- parallel diagonal line
+
         if math.abs(dy / dx) < math.abs(tanTreeLeftPoint) or math.abs(dy / dx) < math.abs(tanTreeRightPoint) then
             print("noooo")
             leash.demaged = true
+            --self.leashPoint[1] = {self.x}
+            leash.tree = self
         end
         
         love.graphics.line(self.x - sx, self.y + sy, self.x + sx, self.y - sy)
-    end
+    --end
 end
 
 
