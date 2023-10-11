@@ -23,10 +23,10 @@ function Leash:draw()
         love.graphics.setColor(50/255, 50/255, 205/255)
         love.graphics.line(self.girlX, self.girlY, self.dogX, self.dogY)
         love.graphics.setColor(1, 1, 1)
-    elseif self.length > 280 and self.demaged then
-        love.graphics.setColor(1, 0, 0)
-        love.graphics.line(self.girlX, self.girlY, self.tree.leashPoint[1][1], self.tree.leashPoint[1][2])
-        love.graphics.line(self.tree.leashPoint[2][1], self.tree.leashPoint[2][2], self.dogX, self.dogY)
-        love.graphics.setColor(1, 1, 1)
+    --elseif self.length > 280 and self.demaged then
+    --    love.graphics.setColor(1, 0, 0)
+    --    love.graphics.line(self.girlX, self.girlY, self.tree.leashPoint[1][1], self.tree.leashPoint[1][2])
+    --    love.graphics.line(self.tree.leashPoint[2][1], self.tree.leashPoint[2][2], self.dogX, self.dogY)
+    --    love.graphics.setColor(1, 1, 1)
     end
 end

@@ -30,11 +30,11 @@ function Dog:update(dt, girlX, girlY)
 
     
     if leash.demaged then
-        self.y = self.y - dt * 100 + dt * 90 * math.pow(0.5, self.powN)
-        local deltaX = 10 * math.pow(2.7182818284, -0.1 * dt * self.angleLeash) * math.cos(math.rad(self.angleLeash)) * dt
+        self.y = self.y - dt * 100 + dt * 100 * math.pow(0.5, self.powN)
+        local deltaX = 400 * math.pow(2.7182818284, -0.5 * dt * self.angleLeash) * math.cos(math.rad(self.angleLeash)) * dt
         self.x = self.x + deltaX
-        self.angleLeash = self.angleLeash + 20
-        self.powN = self.powN + 1
+        self.angleLeash = self.angleLeash + 5
+        self.powN = self.powN + 0.01
     end
 end
 
