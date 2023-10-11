@@ -13,6 +13,8 @@ function Girl:new(path, x, y, scale, leashLength)
     dogYY = 0
     girlXX = self.x
     girlYY = self.y
+
+    self.powN = 0
 end
 
 function Girl:update(dt, dogX, dogY)
@@ -49,9 +51,15 @@ function Girl:update(dt, dogX, dogY)
         self.x = dogX
     end
 
-    deltaX = amplitudo * math.pow(2.7182818284, -0.1 * dt * posAngle) * math.cos(math.rad(posAngle)) * dt
+    local deltaX = amplitudo * math.pow(2.7182818284, -0.1 * dt * posAngle) * math.cos(math.rad(posAngle)) * dt
     self.x = self.x + deltaX + speedGirl * dt
     Girl.super.update(self,dt)
+
+    if leash.demaged and self.y > dogY then
+        self.y = self.y - dt * 100 + dt * 100 * math.pow(0.5, self.powN)
+        self.powN = self.powN + 0.01
+        self.track = {}
+    end
 end
 
 
