@@ -10,6 +10,7 @@ function Circle:new(radius, x)
     self.width = 2 * self.radius
     self.height = 2 * self.radius
     self.leashPoint = {{},{},{}}
+    self.tangentPointRelativeCoordinates = {}
 end
 
 function Circle:update(dt, girl, terrier, leash)
@@ -57,8 +58,10 @@ function Circle:draw()
             local tanLine2 = math.sqrt(math.pow((terrier.x - (self.x + sx)),2) + math.pow((terrier.y - (self.y - sy)),2))
             if tanLine1 < tanLine2 then
                 self.leashPoint[3] = {(self.x - sx), (self.y + sy)}
+                self.tangentPointRelativeCoordinates = {-sx, sy}
             else
                 self.leashPoint[3] = {(self.x + sx), (self.y - sy)}
+                self.tangentPointRelativeCoordinates = {sx, -sy}
             end
         end
         
