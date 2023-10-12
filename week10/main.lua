@@ -41,7 +41,7 @@ end
 function love.update(dt)
     terrier:update(dt, girl.x, girl.y)
     girl:update(dt, terrier.x, terrier.y)
-    leash:update(terrier.x, terrier.y, girl.x, girl.y)
+    leash:update(dt, terrier.x, terrier.y, girl.x, girl.y)
     for i=1,numOfTrees do
         listOfTrees[i]:update(dt, girl, terrier, leash)
     end

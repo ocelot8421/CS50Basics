@@ -9,7 +9,7 @@ function Circle:new(radius, x)
     self.radius = radius
     self.width = 2 * self.radius
     self.height = 2 * self.radius
-    self.leashPoint = {{},{}}
+    self.leashPoint = {{},{},{}}
 end
 
 function Circle:update(dt, girl, terrier, leash)
@@ -24,7 +24,7 @@ end
 
 
 function Circle:draw()
-    if self.collise(self, terrier) or self.collise(self, girl) then
+    if self.collide(self, terrier) or self.collide(self, girl) then
         love.graphics.setColor(1, 0, 0, 1)
     else
         love.graphics.setColor(1, 1, 1, 0.5)
@@ -35,7 +35,7 @@ function Circle:draw()
     -- crash point
     local minPx = math.min(terrier.x, girl.x)
     local maxPx = math.max(terrier.x, girl.x)
-    if minPx < self.x and self.x < maxPx and girl.y < self.y and self.y < terrier.y then
+    if minPx < self.x and self.x < maxPx and girl.y < self.y and self.y < terrier.y  and not leash.damaged then
         local dx = girl.x - terrier.x
         local dy = girl.y - terrier.y
         local sx = math.sin(math.atan2(dy, dx)) * self.radius
@@ -47,18 +47,29 @@ function Circle:draw()
         love.graphics.line((self.x + sy), (self.y + sx), (self.x - sy), (self.y - sx)) -- parallel diagonal line
 
         if math.abs(dy / dx) < math.abs(tanTreeLeftPoint) or math.abs(dy / dx) < math.abs(tanTreeRightPoint) then
-            leash.demaged = true
+            leash.damaged = true
             self.leashPoint[1] = {(self.x + sy), (self.y + sx)}
             self.leashPoint[2] = {(self.x - sy), (self.y - sx)}
             leash.tree = self
+
+            -- searchs for the tangent line and point at collision
+            local tanLine1 = math.sqrt(math.pow((terrier.x - (self.x - sx)),2) + math.pow((terrier.y - (self.y + sy)),2))
+            local tanLine2 = math.sqrt(math.pow((terrier.x - (self.x + sx)),2) + math.pow((terrier.y - (self.y - sy)),2))
+            if tanLine1 < tanLine2 then
+                self.leashPoint[3] = {(self.x - sx), (self.y + sy)}
+            else
+                self.leashPoint[3] = {(self.x + sx), (self.y - sy)}
+            end
         end
         
         love.graphics.line(self.x - sx, self.y + sy, self.x + sx, self.y - sy)
+
+        
     end
 end
 
 
-function Circle:collise(sprite)
+function Circle:collide(sprite)
     local crashed = false
 
     local edgesX = {

@@ -18,22 +18,22 @@ end
 
 function Dog:update(dt, girlX, girlY)
     self.posAngle = math.atan2(self.x - girlX, self.y - girlY)
-    if love.keyboard.isDown("left") and self.posAngle / math.pi * 180 > -90 and not leash.demaged then
+    if love.keyboard.isDown("left") and self.posAngle / math.pi * 180 > -90 and not leash.damaged then
         self.x = self.x - self.leashLength * math.cos(self.posAngle) * dt
-        self.posAngle = self.posAngle + math.rad(1)
-    elseif love.keyboard.isDown("right") and self.posAngle / math.pi * 180 < 90 and not leash.demaged then
+        self.posAngle = self.posAngle + math.rad(3)
+    elseif love.keyboard.isDown("right") and self.posAngle / math.pi * 180 < 90 and not leash.damaged then
         self.x = self.x + self.leashLength * math.cos(self.posAngle) * dt
-        self.posAngle = self.posAngle - math.rad(1)
+        self.posAngle = self.posAngle - math.rad(3)
     end
 
     Dog.super.update(self, dt)
 
     
-    if leash.demaged then
+    if leash.damaged then
         self.y = self.y - dt * 100 + dt * 100 * math.pow(0.5, self.powN)
         local deltaX = 400 * math.pow(2.7182818284, -0.5 * dt * self.angleLeash) * math.cos(math.rad(self.angleLeash)) * dt
         self.x = self.x + deltaX
-        self.angleLeash = self.angleLeash + 5
+        self.angleLeash = self.angleLeash + 1
         self.powN = self.powN + 0.01
     end
 end

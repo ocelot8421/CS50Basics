@@ -7,7 +7,7 @@ function Girl:new(path, x, y, scale, leashLength)
     self.time = 0
     posAngle = 0
     speedGirl = 0
-    amplitudo = 0
+    amplitude = 0
     tempAmp = 0
     dogXX = 0
     dogYY = 0
@@ -26,12 +26,12 @@ function Girl:update(dt, dogX, dogY)
 
     -- The dog is moving and pulling the girl (horizontally). The girl's speed increased (horizontally).
     if love.keyboard.isDown("right") and self.x < dogX then
-        amplitudo = 0
+        amplitude = 0
         speedGirl = 100 * dogH / 50
         tempAmp = speedGirl
         posAngle = 0
     elseif love.keyboard.isDown("left") and self.x > dogX then
-        amplitudo = 0
+        amplitude = 0
         speedGirl = 100 * dogH / 50
         tempAmp = speedGirl
         posAngle = 0
@@ -40,22 +40,22 @@ function Girl:update(dt, dogX, dogY)
     -- The dog stopped but the girl still have speed. She's speed is decreasing and starting oscillating.
     if speedGirl ~= 0 and math.abs(dogH) < 1 then
         speedGirl = 0
-        amplitudo = tempAmp
+        amplitude = tempAmp
     end
-    if amplitudo ~= 0 then
+    if amplitude ~= 0 then
         posAngle = posAngle + 1
     end
     if posAngle > 3000 then
-        amplitudo = 0
+        amplitude = 0
         posAngle = 0
         self.x = dogX
     end
 
-    local deltaX = amplitudo * math.pow(2.7182818284, -0.1 * dt * posAngle) * math.cos(math.rad(posAngle)) * dt
+    local deltaX = amplitude * math.pow(2.7182818284, -0.1 * dt * posAngle) * math.cos(math.rad(posAngle)) * dt
     self.x = self.x + deltaX + speedGirl * dt
     Girl.super.update(self,dt)
 
-    if leash.demaged and self.y > dogY then
+    if leash.damaged and self.y + 150 > dogY then
         self.y = self.y - dt * 100 + dt * 100 * math.pow(0.5, self.powN)
         self.powN = self.powN + 0.01
         self.track = {}
