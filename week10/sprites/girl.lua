@@ -1,4 +1,5 @@
 require "sprites.sprite"
+require "sprites.leash"
 
 Girl = Sprite:extend()
 

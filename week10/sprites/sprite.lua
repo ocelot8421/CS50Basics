@@ -41,6 +41,9 @@ end
 function Sprite:drawTrackLine()
     for i=1,self.trackLength,2 do
         if self.track[i + 2] ~= nil and self.track[i + 3] ~= nil then
+            --distanceBottom = 0
+            --distanceLeft = 0
+            --distanceRight = 0
             distanceBottom = (self.offsetY - self.height) * self.scale
             distanceLeft = self.offsetX * self.scale
             distanceRight = (self.width - self.offsetX) * self.scale

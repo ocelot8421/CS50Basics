@@ -10,7 +10,6 @@ function Circle:new(radius, x)
     self.width = 2 * self.radius
     self.height = 2 * self.radius
     self.leashPoint = {{},{},{}}
-    self.tangentPointRelativeCoordinates = {}
 end
 
 function Circle:update(dt, girl, terrier, leash)
@@ -49,24 +48,23 @@ function Circle:draw()
 
         if math.abs(dy / dx) < math.abs(tanTreeLeftPoint) or math.abs(dy / dx) < math.abs(tanTreeRightPoint) then
             leash.damaged = true
-            self.leashPoint[1] = {(self.x + sy), (self.y + sx)}
-            self.leashPoint[2] = {(self.x - sy), (self.y - sx)}
             leash.tree = self
-
+            
             -- searchs for the tangent line and point at collision
             local tanLine1 = math.sqrt(math.pow((terrier.x - (self.x - sx)),2) + math.pow((terrier.y - (self.y + sy)),2))
             local tanLine2 = math.sqrt(math.pow((terrier.x - (self.x + sx)),2) + math.pow((terrier.y - (self.y - sy)),2))
-            if tanLine1 < tanLine2 then
+            if tanLine1 <= tanLine2 then
                 self.leashPoint[3] = {(self.x - sx), (self.y + sy)}
-                self.tangentPointRelativeCoordinates = {-sx, sy}
             else
                 self.leashPoint[3] = {(self.x + sx), (self.y - sy)}
-                self.tangentPointRelativeCoordinates = {sx, -sy}
             end
-        end
-        
-        love.graphics.line(self.x - sx, self.y + sy, self.x + sx, self.y - sy)
 
+            self.leashPoint[1] = {(self.x + sy), (self.y + sx)}
+            self.leashPoint[2] = {(self.x - sy), (self.y - sx)}
+            
+            love.graphics.line(self.x - sx, self.y + sy, self.x + sx, self.y - sy)
+            
+        end
         
     end
 end
@@ -98,7 +96,7 @@ function Circle:collide(sprite)
     local distY = maxY - minY
     local lengthY = sprite.height * sprite.scale + self.height
 
-    if distX < lengthX and distY < lengthY then
+    if distX < lengthX and distY < lengthY and not leash.damaged then
         sprite.painPoint = sprite.painPoint + 1
         crashed = true
     end

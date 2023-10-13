@@ -1,3 +1,5 @@
+require "sprites.sprite"
+
 Leash = Object:extend()
 
 function Leash:new(girlX, girlY, dogX, dogY)
@@ -8,11 +10,11 @@ function Leash:new(girlX, girlY, dogX, dogY)
     self.length = 300
     self.damaged = false
     self.tree = Circle
-    self.tanPointDog = {}
-    self.tanPointGirl = {}
+    self.tanPointDog = nil
+    self.tanPointGirl = nil
 end
 
-function Leash:update(dt, dogX, dogY, girlX, girlY)
+function Leash:update(dt, dogX, dogY, girlX, girlY, dog, girl)
     self.dogX = dogX
     self.dogY = dogY
     self.girlX = girlX
@@ -33,34 +35,28 @@ function Leash:update(dt, dogX, dogY, girlX, girlY)
         local mGirl = math.sqrt(distGirlTreePow2 - math.pow(self.tree.radius, 2)) -- length of tangent line from girls's spot to edge of the tree
         local directionGirl = {(girlY - self.tree.leashPoint[3][2]), (girlX - self.tree.leashPoint[3][2])}
 
-        local multY = 1
-        local multX = 1
-        local continueLoop = true
-        
-        for i = 1, 2 do
-            multX = -1 * multX
-            for j = 1, 2 do
-                multY = -1 * multY
-                local mDogTest = math.sqrt(math.pow(self.tree.y - multY * self.tree.radius * math.cos(alphaDog - betaDog) - dogY, 2) + math.pow(self.tree.x + multX * self.tree.radius * math.sin(alphaDog - betaDog) - dogX, 2))
-                --if mDog == mDogTest then
-                    print(mDog, mDogTest, alphaDog - betaDog, multY,  math.cos(alphaDog - betaDog), multY * math.cos(alphaDog - betaDog), dogY, multX, math.sin(alphaDog - betaDog), multX * math.sin(alphaDog - betaDog), dogX)
-                --    break
-                --end          
-            end
-        end 
         
         
-
+        self.tanPointGirl = self.tree.leashPoint[1]
+        self.tanPointDog = self.tree.leashPoint[2]
+        
+        
+        local multYDog = (dogY - self.tanPointDog[2]) / math.abs(dogY - self.tanPointDog[2]) -- normalized form
+        local multXDog = (dogX - self.tanPointDog[1]) / math.abs(dogX - self.tanPointDog[1])
+        local multYGirl = (girlY - self.tanPointGirl[2]) / math.abs(girlY - self.tanPointGirl[2]) -- normalized form
+        local multXGirl = (girlX - self.tanPointGirl[1]) / math.abs(girlX - self.tanPointGirl[1])
+        
+        
+        
         -- y coordinates around the tree
-        self.tree.leashPoint[1][2] = self.tree.y + self.tree.radius * math.cos(alphaGirl - betaGirl) -- girl
-        self.tree.leashPoint[2][2] = self.tree.y - multY * self.tree.radius * math.cos(alphaDog - betaDog) -- dog
+        self.tree.leashPoint[1][2] = self.tree.y + multYGirl * self.tree.radius * math.abs(math.cos(alphaGirl - betaGirl)) -- girl
+        self.tree.leashPoint[2][2] = self.tree.y - multYDog * self.tree.radius * math.abs(math.cos(alphaDog - betaDog)) -- dog
         self.tree.leashPoint[3][2] = self.tree.leashPoint[3][2] - dt * 100
         -- x coordinates around the tree
-        self.tree.leashPoint[1][1] = self.tree.x + self.tree.radius * math.sin(alphaGirl - betaGirl) -- girl
-        self.tree.leashPoint[2][1] = self.tree.x + multX * self.tree.radius * math.sin(alphaDog - betaDog) -- dog
+        self.tree.leashPoint[1][1] = self.tree.x + multXGirl * self.tree.radius * math.abs(math.sin(alphaGirl - betaGirl)) -- girl
+        self.tree.leashPoint[2][1] = self.tree.x + multXDog * self.tree.radius * math.abs(math.sin(alphaDog - betaDog)) -- dog
+        
 
-        multY = 1
-        multX = 1
     end
 end
 
@@ -71,14 +67,15 @@ function Leash:draw()
         love.graphics.setColor(1, 1, 1)
     elseif self.dogY - self.girlY > 250 and self.damaged then
         love.graphics.setColor(1, 0, 0)
-        love.graphics.line(self.girlX, self.girlY, self.tree.leashPoint[1][1], self.tree.leashPoint[1][2])
-        love.graphics.line(self.tree.leashPoint[2][1], self.tree.leashPoint[2][2], self.dogX, self.dogY)
-        --love.graphics.line(self.girlX, self.girlY, self.tree.x, self.tree.y, self.dogX, self.dogY)
+        --love.graphics.line(self.girlX, self.girlY, self.tree.leashPoint[1][1], self.tree.leashPoint[1][2])
+        --love.graphics.line(self.tree.leashPoint[2][1], self.tree.leashPoint[2][2], self.dogX, self.dogY)
+        love.graphics.line(self.girlX, self.girlY, self.tree.leashPoint[3][1], self.tree.leashPoint[3][2], self.dogX, self.dogY)
         love.graphics.setColor(1, 1, 1)
     end
 
     --- For debugging:
     if self.damaged then
+        love.graphics.setColor(1, 0, 0)
         love.graphics.circle("line", self.tree.leashPoint[3][1], self.tree.leashPoint[3][2], 10)
     end
 end

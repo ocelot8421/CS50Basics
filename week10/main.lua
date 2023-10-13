@@ -5,11 +5,16 @@ end
 
 
 function love.load()
+
+    -- musica
+    song = love.audio.newSource("resources/Limp Bizkit - Rollin (High-Quality Audio) [TubeRipper.com].ogg", "stream")
+    song:play()
     -- shapes
     Object = require "classic"
     require "sprites.shape"
     require "sprites.circle"
     require "sprites.rectangle"
+    require "assets.stopwatch"
     math.randomseed(os.clock()*100000000000)
     listOfTrees = {}
     numOfTrees = 8
@@ -17,6 +22,9 @@ function love.load()
         local tree = Circle(math.random(5, 40), math.random(0, love.graphics.getWidth( )))
         table.insert(listOfTrees, tree)
     end
+
+    -- timer
+    stopwatch = StopWatch()
 
     leashLengthMax = 300
     leashLength = leashLengthMax
@@ -41,10 +49,11 @@ end
 function love.update(dt)
     terrier:update(dt, girl.x, girl.y)
     girl:update(dt, terrier.x, terrier.y)
-    leash:update(dt, terrier.x, terrier.y, girl.x, girl.y)
+    leash:update(dt, terrier.x, terrier.y, girl.x, girl.y, terrier, girl)
     for i=1,numOfTrees do
         listOfTrees[i]:update(dt, girl, terrier, leash)
     end
+    
 end
 
 
@@ -58,6 +67,17 @@ function love.draw()
     terrier:draw()
     girl:draw(76, 48)
     leash:draw()
+
+    -- game over on the screen
+    if leash.damaged then
+        stopwatch:update()
+        love.graphics.print("GAME OVER", 200, 250, 0, 5, 5)
+        love.graphics.setColor(1,1,1)
+        local timer = stopwatch.finish - stopwatch.start
+        local dem = girl.painPoint + terrier.painPoint
+        love.graphics.print(string.format("%.1f seconds",timer), 210, 330)
+        love.graphics.print(string.format("%.1f pain / sec", dem / timer), 210, 350)
+    end
 end
 
 
